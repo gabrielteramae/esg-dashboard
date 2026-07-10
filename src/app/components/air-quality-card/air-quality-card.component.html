@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Qualidade do ar</h2>
+    <form class="search-row" (ngSubmit)="search()">
+      <input
+        class="search-input"
+        type="text"
+        [(ngModel)]="cityInput"
+        name="city"
+        placeholder="Buscar cidade..."
+      />
+      <button class="search-btn" type="submit" [disabled]="loading">
+        {{ loading ? '...' : 'Buscar' }}
+      </button>
+    </form>
+  </div>
+
+  <div class="error-msg" *ngIf="error">{{ error }}</div>
+
+  <ng-container *ngIf="reading as r">
+    <p class="location">
+      {{ r.cityName }}<span *ngIf="r.region">, {{ r.region }}</span> — {{ r.country }}
+    </p>
+
+    <div class="aqi-row">
+      <div class="aqi-value">{{ r.europeanAqi | number: '1.0-0' }}</div>
+      <div class="aqi-meta">
+        <span class="aqi-pill" [ngClass]="aqiStatus(r.europeanAqi).className">
+          {{ aqiStatus(r.europeanAqi).label }}
+        </span>
+        <span class="aqi-caption">Índice Europeu de Qualidade do Ar</span>
+      </div>
+    </div>
+
+    <div class="pollutant-grid">
+      <div class="pollutant">
+        <span class="pollutant-label">PM2.5</span>
+        <span class="pollutant-value">{{ r.pm2_5 | number: '1.0-1' }} <small>µg/m³</small></span>
+      </div>
+      <div class="pollutant">
+        <span class="pollutant-label">PM10</span>
+        <span class="pollutant-value">{{ r.pm10 | number: '1.0-1' }} <small>µg/m³</small></span>
+      </div>
+      <div class="pollutant">
+        <span class="pollutant-label">Ozônio</span>
+        <span class="pollutant-value">{{ r.ozone | number: '1.0-1' }} <small>µg/m³</small></span>
+      </div>
+      <div class="pollutant">
+        <span class="pollutant-label">NO₂</span>
+        <span class="pollutant-value">{{ r.nitrogenDioxide | number: '1.0-1' }} <small>µg/m³</small></span>
+      </div>
+      <div class="pollutant">
+        <span class="pollutant-label">SO₂</span>
+        <span class="pollutant-value">{{ r.sulphurDioxide | number: '1.0-1' }} <small>µg/m³</small></span>
+      </div>
+      <div class="pollutant">
+        <span class="pollutant-label">CO</span>
+        <span class="pollutant-value">{{ r.carbonMonoxide | number: '1.0-1' }} <small>µg/m³</small></span>
+      </div>
+    </div>
+  </ng-container>
+</div>

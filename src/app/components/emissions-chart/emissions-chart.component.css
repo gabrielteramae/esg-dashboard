@@ -1,0 +1,107 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(28, 35, 30, 0.06);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.card-header h2 {
+  font-size: 19px;
+  color: var(--forest-dark);
+}
+
+.country-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--forest);
+  background: var(--sage-light);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.error-msg {
+  color: var(--danger);
+  font-size: 13px;
+}
+
+.loading-msg {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--forest-dark);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.trend {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: right;
+  color: var(--muted);
+}
+
+.trend-up {
+  color: var(--danger);
+}
+
+.trend-down {
+  color: #1f7a45;
+}
+
+.trend-caption {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.chart {
+  width: 100%;
+  height: 160px;
+  display: block;
+}
+
+.bar {
+  fill: var(--forest);
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.bar:hover {
+  opacity: 1;
+}
+
+.axis-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+}

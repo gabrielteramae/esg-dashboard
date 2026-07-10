@@ -1,0 +1,41 @@
+:root {
+  --paper: #f3efe6;
+  --surface: #ffffff;
+  --forest: #1f4d3a;
+  --forest-dark: #163a2b;
+  --sage: #7fa38f;
+  --sage-light: #e4ede8;
+  --amber: #c98a2c;
+  --danger: #b3462c;
+  --ink: #1c231e;
+  --muted: #5f6b62;
+  --border: rgba(31, 77, 58, 0.14);
+
+  --font-heading: 'Source Serif 4', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+button {
+  font-family: inherit;
+}

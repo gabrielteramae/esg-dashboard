@@ -1,0 +1,32 @@
+<div class="page">
+  <header class="page-header">
+    <div class="header-text">
+      <p class="eyebrow">Painel de indicadores</p>
+      <h1>ESG &amp; Sustentabilidade</h1>
+      <p class="tagline">Qualidade do ar em tempo real e indicadores ambientais por país, direto de fontes públicas.</p>
+    </div>
+    <app-country-picker
+      [selected]="selectedCountry"
+      (selectedChange)="onCountryChange($event)"
+    ></app-country-picker>
+  </header>
+
+  <main class="grid">
+    <div class="grid-item span-2">
+      <app-air-quality-card></app-air-quality-card>
+    </div>
+    <div class="grid-item">
+      <app-renewable-card [countryCode]="selectedCountry"></app-renewable-card>
+    </div>
+    <div class="grid-item span-3">
+      <app-emissions-chart
+        [countryCode]="selectedCountry"
+        [countryName]="selectedCountryName"
+      ></app-emissions-chart>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>Dados de qualidade do ar via Open-Meteo. Dados de emissões e energia via World Bank Open Data.</p>
+  </footer>
+</div>

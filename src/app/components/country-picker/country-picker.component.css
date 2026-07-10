@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.picker-label {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.picker-select {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}

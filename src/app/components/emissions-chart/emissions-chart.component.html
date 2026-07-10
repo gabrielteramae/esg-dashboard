@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Emissões de CO₂ per capita</h2>
+    <span class="country-tag">{{ countryName }}</span>
+  </div>
+
+  <div class="error-msg" *ngIf="error">{{ error }}</div>
+
+  <ng-container *ngIf="!loading && !error && latest">
+    <div class="stat-row">
+      <div>
+        <div class="stat-value">{{ latest!.value | number: '1.1-1' }}</div>
+        <div class="stat-label">toneladas/pessoa em {{ latest!.year }}</div>
+      </div>
+      <div class="trend" *ngIf="trendPercent !== null" [class.trend-up]="trendPercent! > 0" [class.trend-down]="trendPercent! < 0">
+        {{ trendPercent! > 0 ? '+' : '' }}{{ trendPercent! | number: '1.0-0' }}%
+        <span class="trend-caption">desde {{ earliest!.year }}</span>
+      </div>
+    </div>
+
+    <svg class="chart" [attr.viewBox]="'0 0 ' + chartWidth + ' ' + chartHeight" preserveAspectRatio="none">
+      <rect
+        *ngFor="let bar of bars"
+        [attr.x]="bar.x"
+        [attr.y]="bar.y"
+        [attr.width]="barWidthActual"
+        [attr.height]="bar.height"
+        rx="2"
+        class="bar"
+      >
+        <title>{{ bar.year }}: {{ bar.value | number: '1.1-1' }} t</title>
+      </rect>
+    </svg>
+
+    <div class="axis-labels">
+      <span>{{ earliest!.year }}</span>
+      <span>{{ latest!.year }}</span>
+    </div>
+  </ng-container>
+
+  <p class="loading-msg" *ngIf="loading">Carregando dados...</p>
+</div>

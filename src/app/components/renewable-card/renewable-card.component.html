@@ -1,0 +1,27 @@
+<div class="card">
+  <h2>Energia renovável</h2>
+  <p class="subtitle">% da eletricidade de fontes renováveis</p>
+
+  <div class="error-msg" *ngIf="error">{{ error }}</div>
+
+  <div class="gauge-wrap" *ngIf="!loading && !error && latest">
+    <svg viewBox="0 0 140 140" class="gauge">
+      <circle cx="70" cy="70" [attr.r]="radius" class="gauge-track" />
+      <circle
+        cx="70"
+        cy="70"
+        [attr.r]="radius"
+        class="gauge-value"
+        [attr.stroke-dasharray]="circumference"
+        [attr.stroke-dashoffset]="dashOffset"
+        transform="rotate(-90 70 70)"
+      />
+      <text x="70" y="66" text-anchor="middle" class="gauge-number">
+        {{ latest!.value | number: '1.0-0' }}%
+      </text>
+      <text x="70" y="86" text-anchor="middle" class="gauge-year">{{ latest!.year }}</text>
+    </svg>
+  </div>
+
+  <p class="loading-msg" *ngIf="loading">Carregando dados...</p>
+</div>

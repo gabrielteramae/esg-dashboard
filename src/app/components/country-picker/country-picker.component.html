@@ -1,0 +1,9 @@
+<label class="picker-label" for="country-select">País de referência</label>
+<select
+  id="country-select"
+  class="picker-select"
+  [ngModel]="selected"
+  (ngModelChange)="onChange($event)"
+>
+  <option *ngFor="let c of countries" [value]="c.code">{{ c.name }}</option>
+</select>
