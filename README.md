@@ -1,50 +1,51 @@
-# Painel ESG
+# Painel ESG — ar, CO₂ e energia renovável
+
 ![Angular](https://img.shields.io/badge/Angular-18-DD0031?style=flat&logo=angular&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![RxJS](https://img.shields.io/badge/RxJS-B7178C?style=flat&logo=reactivex&logoColor=white)
 
-Dashboard de indicadores ambientais em Angular + TypeScript, consumindo APIs públicas reais.
+Painel Angular com qualidade do ar por cidade e dois indicadores históricos por país (padrão `BRA`): CO₂ per capita e fatia renovável da eletricidade. Os gráficos são SVG nos componentes, sem biblioteca de chart.
 
-## Sobre
-
-Um painel estilo relatório ESG que combina dados de qualidade do ar em tempo real com indicadores históricos de emissões de CO₂ e energia renovável por país. Todos os dados vêm de APIs públicas gratuitas, sem necessidade de chave de acesso.
-
-## Funcionalidades
-
-- **Qualidade do ar em tempo real**: busca por cidade, mostra o Índice Europeu de Qualidade do Ar (classificado por cor) e os principais poluentes (PM2.5, PM10, ozônio, NO₂, SO₂, CO)
-- **Emissões de CO₂ per capita**: gráfico de barras com o histórico dos últimos anos por país selecionado, com variação percentual
-- **Energia renovável**: gauge circular com o percentual da matriz elétrica proveniente de fontes renováveis
-- Seletor de país compartilhado entre os indicadores históricos
-- Layout responsivo, com identidade visual própria (paleta terrosa/verde, tipografia editorial)
-
-## Fontes de dados
-
-- **[Open-Meteo Air Quality API](https://open-meteo.com/)** — qualidade do ar em tempo real, sem chave de API
-- **[World Bank Open Data API](https://datahelpdesk.worldbank.org/knowledgebase/topics/125589)** — indicadores de emissões (`EN.GHG.CO2.PC.CE.AR5`) e energia renovável (`EG.ELC.RNEW.ZS`), sem chave de API
+| Escolha | Motivo |
+| --- | --- |
+| Open-Meteo e World Bank no client | As duas APIs respondem sem chave. O país do histórico é um seletor compartilhado |
 
 ## Stack
 
-- Angular 18 (standalone components)
-- TypeScript
-- RxJS
-- CSS puro (sem bibliotecas de UI), gráficos em SVG nativo
+- Angular 18, componentes standalone, TypeScript e RxJS
+- `AirQualityService`: geocoding Open-Meteo e `air-quality-api.open-meteo.com` (`european_aqi` e poluentes)
+- `WorldBankService`: `EN.GHG.CO2.PC.CE.AR5` e `EG.ELC.RNEW.ZS`, anos 2000–2023
 
----
+## Estrutura
 
-## Como rodar localmente
+```
+angular.json
+package.json
+src/main.ts
+src/index.html
+src/styles.css
+src/app/app.component.ts
+src/app/components/air-quality-card/
+src/app/components/emissions-chart/
+src/app/components/renewable-card/
+src/app/components/country-picker/
+src/app/models/country.model.ts
+src/app/services/air-quality.service.ts
+src/app/services/world-bank.service.ts
+public/favicon.ico
+```
 
-**Pré-requisitos:** Node.js 18+ instalado.
+## Como rodar
 
 ```bash
+git clone https://github.com/gabrielteramae/esg-dashboard.git
+cd esg-dashboard
 npm install
 npm start
 ```
 
-Acesse http://localhost:4200
+Abra http://localhost:4200. `npm run build` usa o builder `application` e grava em `dist/esg-dashboard` (saída de browser em `dist/esg-dashboard/browser`).
 
-## Build de produção
+---
 
-```bash
-npm run build
-```
-
-Gera a pasta `dist/esg-dashboard/browser`, pronta pra hospedar em qualquer serviço estático (Vercel, Netlify, GitHub Pages).
+© 2026 Gabriel Teramae Chan
