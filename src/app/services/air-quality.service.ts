@@ -60,7 +60,11 @@ export class AirQualityService {
           `&current=european_aqi,pm2_5,pm10,ozone,nitrogen_dioxide,sulphur_dioxide,carbon_monoxide`;
 
         return this.http.get<AirQualityResponse>(airUrl).pipe(
-          map((air) => ({
+          map((air) => {
+            if (!air.current) {
+              throw new Error('Sem leitura de qualidade do ar');
+            }
+            return {
             cityName: place.name,
             region: place.admin1 || '',
             country: place.country,
@@ -72,7 +76,8 @@ export class AirQualityService {
             sulphurDioxide: air.current.sulphur_dioxide,
             carbonMonoxide: air.current.carbon_monoxide,
             time: air.current.time,
-          }))
+          };
+          })
         );
       })
     );
